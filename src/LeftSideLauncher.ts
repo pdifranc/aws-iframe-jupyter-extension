@@ -35,11 +35,11 @@ export class LeftSideLauncher {
     const launchButton = document.createElement("div");
     const header = document.createElement("header");
     header.className = "aws_glue_databrew_header";
-    header.textContent = "AWS Glue DataBrew";
+    header.textContent = "MLFlow";
 
     launchButton.title = "Welcome to AWS Glue DataBrew";
     launchButton.id = "aws_glue_databrew_launch_button";
-    launchButton.textContent = "Launch AWS Glue DataBrew";
+    launchButton.textContent = "Launch MLFlow";
 
     launchButton.onclick = widget.handleLaunchButtonClicked.bind(widget);
 
@@ -47,7 +47,7 @@ export class LeftSideLauncher {
     widget.node.appendChild(launchButton);
     widget.id = "aws_glue_databrew_jupyter_left_side_launcher";
     widget.title.iconClass = "jp-databrew-logo jp-SideBar-tabIcon";
-    widget.title.caption = "AWS Glue DataBrew";
+    widget.title.caption = "MLFlow";
 
     return widget;
   }

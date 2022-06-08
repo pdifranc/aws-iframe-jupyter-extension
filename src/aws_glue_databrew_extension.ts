@@ -6,16 +6,11 @@ import {
 import { ICommandPalette } from "@jupyterlab/apputils";
 import { ILauncher } from "@jupyterlab/launcher";
 import { Widget } from "@lumino/widgets";
-import { getAWSConfig } from "./client";
 import { GLUE_DATABREW_RENDER } from "./constants";
 import { LeftSideLauncher } from "./LeftSideLauncher";
 import { MainLauncher } from "./MainLauncher";
-import { isCnPartition } from "./utils";
 
 const getAppVersion = (app: JupyterFrontEnd) => app.version;
-const getBaseUrl = (app: JupyterFrontEnd) =>
-  app.serviceManager.serverSettings.baseUrl;
-
 /**
  * Initialize the console widget extension
  */
@@ -29,28 +24,26 @@ export const initiateExtension = (
     launcher: ILauncher
   ) => {
     const version = getAppVersion(app);
-    const baseUrl = getBaseUrl(app);
-    const url = new URL(baseUrl);
-    const { region } = await getAWSConfig(url.pathname);
-    const [jsPath, cssPath] = await getPaths(region);
-    const awsText = isCnPartition(region) ? "Amazon" : "AWS";
-    const consoleWidget = MainLauncher.create(
-      version,
-      baseUrl,
-      cssPath,
-      region
-    );
+
+    const consoleWidget = MainLauncher.create();
+    // Create a blank content widget inside of a MainAreaWidget
+    //const content = new Widget();
+    //const widget = new MainAreaWidget({ content });
 
     app.commands.addCommand(GLUE_DATABREW_RENDER, {
-      label: `Launch ${awsText} Glue DataBrew`,
+      label: "Launch MLFlow",
       icon: "jp-databrew-logo",
       execute: () => {
         if (!consoleWidget.isAttached) {
           app.shell.add(consoleWidget as Widget, "main");
-          const script = document.createElement("script");
 
-          script.setAttribute("src", jsPath);
-          consoleWidget.consoleRoot.appendChild(script);
+          const iframe = document.createElement("iframe");
+
+          iframe.setAttribute("src", "https://rp24ujrrrb.execute-api.eu-central-1.amazonaws.com/");
+          iframe.setAttribute("width", "1600");
+          iframe.setAttribute("height", "800");
+          iframe.setAttribute("allowfullscreen", "");
+          consoleWidget.consoleRoot.appendChild(iframe);
         }
         app.shell.activateById(consoleWidget.id);
       },
@@ -68,7 +61,7 @@ export const initiateExtension = (
         command: GLUE_DATABREW_RENDER,
         args: {
           newBrowserTab: true,
-          title: "Launch Databrew",
+          title: "Launch MLFlow",
           id: "databrew-launcher",
         },
         category: "Other",
