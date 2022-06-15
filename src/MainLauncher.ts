@@ -26,8 +26,6 @@ export class MainLauncher {
   static create(): LuminoMainLauncher {
     const widget = new LuminoMainLauncher();
 
-    //const awsText = isCnPartition(region) ? "Amazon" : "AWS";
-    //widget.cssPath = cssPath;
     widget.id = "aws_iframe_jupyter";
     widget.title.label = "MLFlow";
     widget.title.closable = true;
