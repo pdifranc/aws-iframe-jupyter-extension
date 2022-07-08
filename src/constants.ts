@@ -1,4 +1,4 @@
-import { subdomain } from "./subdomain.json";
+import { domain } from "./domain.json";
 
 export const IFRAME_RENDER = "gluedatabrew:render";
-export const MLFLOW_DOMAIN = `"https://${subdomain}`;
+export const DOMAIN = domain;

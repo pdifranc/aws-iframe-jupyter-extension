@@ -29,6 +29,6 @@
     "src/constants.ts",
     "src/client.ts",
     "src/types.ts",
-    "src/subdomain.json"
+    "src/domain.json"
   ]
 }
