@@ -58,10 +58,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aws/aws-glue-databrew-jupyter-extension.git"
+    "url": "git+https://github.com/pdifranc/aws-iframe-jupyter-extension.git"
   },
   "bugs": {
-    "url": "https://github.com/aws/aws-glue-databrew-jupyter-extension/issues"
+    "url": "https://github.com/pdifranc/aws-iframe-jupyter-extension/issues"
   },
-  "homepage": "https://github.com/aws/aws-glue-databrew-jupyter-extension#readme"
+  "homepage": "https://github.com/pdifranc/aws-iframe-jupyter-extension#readme"
 }
